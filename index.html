@@ -89,7 +89,22 @@
             localStorage.removeItem(obj.mail)
             parentEle.removeChild(childEle)
           }
+
+
+          const editBtn = document.createElement('input')
+          editBtn.type = 'button'
+          editBtn.value = 'Edit'
+          editBtn.onclick = () => {
+            localStorage.removeItem(obj.mail)
+            parentEle.removeChild(childEle)
+            document.getElementById('formGroupExampleInput').value = obj.name;
+            document.getElementById('exampleInputEmail1').value = obj.mail;
+            document.getElementById('date').value = obj.date;
+            document.getElementById('time').value = obj.time;
+          }
+
           childEle.appendChild(deleteBtn)
+          childEle.appendChild(editBtn)
           parentEle.appendChild(childEle)
         }
 
