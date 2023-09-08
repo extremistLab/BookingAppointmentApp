@@ -71,8 +71,17 @@
         time
         }
 
-      localStorage.setItem('details', JSON.stringify(obj));
-      showUserOnScreen(obj)
+      axios.post("https://crudcrud.com/api/d72d38b8ecaf4f13ba6c058d5477e950/appointmentData")
+      .then((respone)  =>{
+        showUserOnScreen(respone.data)
+        console.log(respone)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+      // localStorage.setItem('details', JSON.stringify(obj));
+      // showUserOnScreen(obj)
         }
 
         function showUserOnScreen(obj){
