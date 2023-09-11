@@ -100,17 +100,36 @@
         function showUserOnScreen(obj){
           const parentEle = document.getElementById('listOfItems')
           const childEle = document.createElement('li')
-          childEle.textContent = obj.name + '-' + obj.mail + '-' +
-          obj.date + '-' + obj.time
+          // childEle.textContent = obj.name + '-' + obj.mail + '-' +
+          // obj.date + '-' + obj.time
           
 
-          const deleteBtn = document.createElement('input')
-          deleteBtn.type = 'button'
-          deleteBtn.value = 'Delete'
-          deleteBtn.onclick = () => {
-            localStorage.removeItem(obj.mail)
-            parentEle.removeChild(childEle)
-          }
+          // const deleteBtn = document.createElement('input')
+          // deleteBtn.type = 'button'
+          // deleteBtn.value = 'Delete'
+          // deleteBtn.onclick = () => {
+          //   localStorage.removeItem(obj.mail)
+          //   parentEle.removeChild(childEle)
+          // }
+
+          const deleteIcon = document.createElement('span'); // Create a delete icon element
+          deleteIcon.innerHTML = '<i class="fa fa-trash"></i>'; // You can use any icon library or custom icon here
+          
+          // Display user details
+          childEle.textContent = obj.name + '-' + obj.mail + '-' + obj.date + '-' + obj.time;
+
+          // Delete button click event
+          deleteIcon.addEventListener('click', () => {
+            // Send a DELETE request to the CRUD API to remove the user by _id
+            axios.delete(`https://crudcrud.com/api/c65d4e216d684a9eaf4802507bba838d/appointmentData/${obj._id}`)
+              .then((response) => {
+                // If deletion is successful, remove the user from the website
+                parentEle.removeChild(childEle);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          });
 
 
           const editBtn = document.createElement('input')
